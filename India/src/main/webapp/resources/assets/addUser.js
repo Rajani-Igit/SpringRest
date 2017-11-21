@@ -5,6 +5,7 @@ app.controller("myctrl",["$scope","$http","customerService",function(scope,http,
 	scope.lname;
 	scope.mobile;
 	scope.password;
+	scope.show=false;
 	scope.languages=["Hindi","English","Odia"];
 	scope.states=["Odisha","Telengana","AndhraPradesh","Banglore"];
 	scope.submit=function(){
@@ -17,6 +18,19 @@ app.controller("myctrl",["$scope","$http","customerService",function(scope,http,
 		customerservice.saveCustomer(function(r){
 			scope.message=r;
 		},scope.selectedlang,scope.fname,scope.lname,scope.mobile,scope.password,scope.selectestate);
+	}
+	
+scope.adduserdata=function(){
+		alert("inside userdatasssss");
+		scope.show=true;
+		var req = {
+				 method: 'GET',
+				 url: 'add.htm'
+				
+				}
+
+				$http(req).then(function(response){response.data;}, function(){alert("Eror occured")});
+		
 	}
 	
 	
