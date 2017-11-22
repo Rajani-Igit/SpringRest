@@ -1,6 +1,8 @@
 package com.curdoperation.bo;
 
-public class UserBo {
+import java.io.Serializable;
+
+public class UserBo implements Serializable {
 	private String fName;
 	private String lName;
 	private String gender;
@@ -57,6 +59,12 @@ public class UserBo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Override
+	public String toString() {
+		return "UserBo [fName=" + fName + ", lName=" + lName + ", gender=" + gender + ", state=" + state + ", zip="
+				+ zip + ", mobile=" + mobile + ", email=" + email + ", password=" + password + "]";
+	}
+	
 	
 	
 	
