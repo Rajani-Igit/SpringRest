@@ -2,6 +2,9 @@ package com.curdoperation.bo;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class UserBo implements Serializable {
 	private String fName;
 	private String lName;
@@ -59,6 +62,7 @@ public class UserBo implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	@Override
 	public String toString() {
 		return "UserBo [fName=" + fName + ", lName=" + lName + ", gender=" + gender + ", state=" + state + ", zip="

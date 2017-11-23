@@ -1,18 +1,21 @@
 package com.curdoperation.controller;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.curdoperation.bo.UserBo;
 import com.curdoperation.dao.UserDao;
 import com.fasterxml.jackson.core.JsonProcessingException;
-@RestController
+@Controller
 public class UserController {
 	 String message = "Welcome to your 1st Maven Spring project !";  
 	 
@@ -24,10 +27,10 @@ public class UserController {
 	        System.out.println("from controller");  
 	        return "index";
 	    } 
-	    @RequestMapping("/add") 
+	    @RequestMapping(value="/add",method=RequestMethod.POST) 
 	    @ResponseBody
-	    public String addUser() { 
-	    	
+	    public String addUser(@RequestBody UserBo userbo) { 
+	    	/*
 	    	UserBo bo=new UserBo();
 	    	bo.setfName("Rajanikanta");
 	    	bo.setlName("Pradhan");
@@ -36,14 +39,15 @@ public class UserController {
 	    	bo.setZip("761125");
 	    	bo.setMobile("8895247580");
 	    	bo.setPassword("wellcome1");
-	    	bo.setEmail("rajani769@gmail.com");
+	    	bo.setEmail("rajani769@gmail.com");*/
+	    	System.out.println(userbo);
 	        System.out.println("from controller");
-	        System.out.println(userdao.saveUser(bo));
+	        System.out.println(userdao.saveUser(userbo));
 	        return "addUser";
 	    }
 	    
-	    @RequestMapping(value="/finduser",method = RequestMethod.GET, headers="Accept=*/*",  produces=MediaType.APPLICATION_JSON_VALUE)
-	   
+	    @RequestMapping(value="/finduser",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+	    @ResponseBody
 	    public UserBo findUserByMail() throws JsonProcessingException { 
 	    	
 	    	
@@ -80,6 +84,19 @@ public class UserController {
 	        System.out.println(fname);
 	       // System.out.println(state);
 	        return "addUser";
+	    }
+	    @RequestMapping(value="selectlist",method=RequestMethod.GET)
+	    @ResponseBody
+	    public List<String> fetchStates(){
+	    	System.out.println("Select List");
+	    	List<String> states=new ArrayList<>();
+	    	states.add("Odisha");
+	    	states.add("Telengana");
+	    	states.add("Andrapradesh");
+	    	states.add("Maharastra");
+	    	states.add("Bihar");
+	    	states.add("UttarPradesh");
+	    	return states;
 	    }
 	    
 }
