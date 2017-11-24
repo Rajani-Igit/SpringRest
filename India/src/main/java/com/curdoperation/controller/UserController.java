@@ -1,10 +1,10 @@
 package com.curdoperation.controller;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,6 @@ import com.curdoperation.dao.UserDao;
 import com.fasterxml.jackson.core.JsonProcessingException;
 @Controller
 public class UserController {
-	 String message = "Welcome to your 1st Maven Spring project !";  
 	 
 	 @Autowired
 	 private UserDao userdao;
@@ -27,9 +26,9 @@ public class UserController {
 	        System.out.println("from controller");  
 	        return "index";
 	    } 
-	    @RequestMapping(value="/add",method=RequestMethod.POST) 
+	    @RequestMapping(value="/add",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE) 
 	    @ResponseBody
-	    public String addUser(@RequestBody UserBo userbo) { 
+	    public ResponseEntity<String> addUser(@RequestBody UserBo userbo) { 
 	    	/*
 	    	UserBo bo=new UserBo();
 	    	bo.setfName("Rajanikanta");
@@ -43,12 +42,12 @@ public class UserController {
 	    	System.out.println(userbo);
 	        System.out.println("from controller");
 	        System.out.println(userdao.saveUser(userbo));
-	        return "addUser";
+	        return new ResponseEntity<String>("User Added Successfully",HttpStatus.OK);
 	    }
 	    
 	    @RequestMapping(value="/finduser",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	    @ResponseBody
-	    public UserBo findUserByMail() throws JsonProcessingException { 
+	    public ResponseEntity<UserBo> findUserByMail() throws JsonProcessingException { 
 	    	
 	    	
 	        System.out.println(userdao.findUser("rajani769@gmail.com"));
@@ -64,17 +63,17 @@ public class UserController {
 				//jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
 	        */
 	        
+	        return new ResponseEntity<UserBo>(userdao.findUser("rajani769@gmail.com"), HttpStatus.OK);
 	        
-	        return userdao.findUser("rajani769@gmail.com");
+	       // return userdao.findUser("rajani769@gmail.com");
 	    }
 	    
 	    @RequestMapping("/getallusers") 
-	    @ResponseBody
-	    public List<UserBo> getAllUsers() throws JsonProcessingException { 
+	    public ResponseEntity<List<UserBo>> getAllUsers() throws JsonProcessingException { 
 	       /* System.out.println(userdao.getUsers());
 	        ObjectMapper mapper=new ObjectMapper();
 	      String jsonInString = mapper.writeValueAsString(userdao.getUsers());*/
-	     return userdao.getUsers();
+	     return new ResponseEntity<List<UserBo>>(userdao.getUsers(),HttpStatus.OK);
 	    }
 	    
 	    @RequestMapping(value="/addUser",method=RequestMethod.GET)

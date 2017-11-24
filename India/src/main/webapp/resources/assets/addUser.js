@@ -33,6 +33,7 @@ app.controller("myctrl", [ "$scope", "$http", "$log", "customerService", functio
 				//First function handles success
 				scope.users = response.data;
 				console.log(scope.users);
+				console.log(response);
 				scope.show = false;
 				scope.editshowhide = false;
 				scope.totalusesrdirective = true;
@@ -71,9 +72,12 @@ app.controller("myctrl", [ "$scope", "$http", "$log", "customerService", functio
 
 					http.post("add.do", data)
 						.then(function(success) {
-							callback(success);
+							alert("data......");
+							scope.show = false;
+							console.log(success);
+							
 						}, function(error) {
-							errorCallback(error.data);
+							
 						});
 
 
