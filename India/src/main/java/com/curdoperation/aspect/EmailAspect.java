@@ -24,7 +24,7 @@ public class EmailAspect {
 		List<String> mailId = new ArrayList<>();
 		mailId.add(email.trim());
 		System.out.println(service.sendMail(mailId, " Curd Operation Registration Status",
-				"Hi you have Sucessfully Registered"));
+				"Hi"+"you have Sucessfully Registered"));
 	}
   
 
