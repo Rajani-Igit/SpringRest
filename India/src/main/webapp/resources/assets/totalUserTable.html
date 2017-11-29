@@ -5,7 +5,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table class="table table-hover table-bordered">
+ <div class="form-group">
+                        <label for="usr">Search:</label>
+                        <input type="text"  placeholder="Search User" class="form-control" style="width: 25%;" ng-model="attribute">
+                    </div>
+<table  id="usertbl" class="table table-hover table-bordered" style="
+ position: relative;
+">
   <tr>
         <th>Firstname</th>
         <th>Lastname</th>
@@ -14,8 +20,10 @@
         <th>zip</th>
         <th>email</th>
         <th>mobile</th>
+         <th>Delete</th>
       </tr>
-  <tr ng-repeat="x in users">
+     
+  <tr ng-repeat="x in users | filter:attribute">
     <td>{{ x.fName }}</td>
     <td>{{ x.lName }}</td>
     <td>{{ x.gender }}</td>
@@ -23,8 +31,9 @@
     <td>{{ x.zip }}</td>
     <td>{{ x.email }}</td>
     <td>{{ x.mobile }}</td>
-
+    <td><button class="btn btn-danger" ng-click="clickFunc(x.email)">Delete Customer</button></td>
   </tr>
+   
 </table>
 
 </body>

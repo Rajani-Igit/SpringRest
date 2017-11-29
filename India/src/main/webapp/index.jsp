@@ -26,64 +26,36 @@
   <div style="
     margin-top: 54px;
     margin-left: 305px;">
-  <button class="btn btn-primary" ng-click="adduserdata()">Add Customer</button>
-  <button class="btn btn-danger" ng-click="showallusers()">Show All Customer</button>
-  <button class="btn btn-success" onclick="location.href='views/editUser.jsp';">Edit Customer</button>
-  <button class="btn btn-warning" onclick="location.href='views/searchUser.jsp';">Search Customer</button>
-  <button class="btn btn-danger" onclick="location.href='views/deleteUser.jsp';">Delete Customer</button>
+  <button class="btn btn-primary" ng-click="adduserdata()">Add User</button>
+  <button class="btn btn-danger" ng-click="showallusers()">Show All Users</button>
+  <button class="btn btn-success" ng-click="fetchNextPage()">Next Page</button>
+  <button class="btn btn-warning" ng-click="search()">Search User</button>
+  <button class="btn btn-danger" ng-click="dummy()">Delete User</button>
   </div>
- <!--  <div form-directive ng-if="show"></div> -->
+ <div ng-show="showsuccessmessage" style="
+    position: absolute;
+    left: 625px;
+    top: 74px;
+    font-size: large;
+    font-family: sans-serif;
+    font-style: italic;
+    color: red;
+">{{successmessage}}</div> 
   <div total-user-table ng-if="totalusesrdirective"></div>
   
-  <div ng-show="show" class="container" style=" position: absolute; top: 191px;left: 366px;">
-                <form>
+  <div ng-show="searchshow" class="container" style=" position: absolute; top: 191px;left: 366px;">
+               <form>
                     <div class="form-group">
-                        <label for="usr">First name:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="fname">
+                        <label for="usr">Search:</label>
+                        <input type="text"  placeholder="Search By Email id" class="form-control" style="width: 50%;" ng-model="searchattribute">
                     </div>
-                    <div class="form-group">
-                        <label for="usr">Last Name:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="lname">
+                     <button class="btn btn-success" ng-click="searchuser(searchattribute)">Submit</button>
+                    </form>
                     </div>
-                    <div class="form-group">
-                        <label for="usr">MobileNo:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="mobile">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Email:</label>
-                        <input type="text" style="width: 50%;" class="form-control" ng-model="email">
-                    </div>
-                     <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" style="width: 50%;" class="form-control" ng-model="password">
-                    </div>
-                     <div class="form-group">
-                        <label for="pwd">Zip:</label>
-                        <input type="text" style="width: 50%;" class="form-control" ng-model="zip">
-                    </div>
-                    
-                    <div ng-repeat="language in languages">
-
-                        <div>
-                            <label>
-                                <input ng-model="$parent.selectedlang" value="{{language}}" name="languageradiobtn" type="radio"> <span> {{language}} </span>
-
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-05">
-                            <label for="sel1">Select State:</label>
-                            <select name="singleSelect" id="singleSelect" style="width: 25%;" class="form-control" ng-model="selectestate">
-                                <option value="">---Please select---</option>
-                                <option ng-repeat="state in states" value="{{state}}">{{state}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="btn btn-success" ng-click="submit()">Submit</button>
-                </form>
+  <div  form-directive  ng-show="show">
                 
-            </div>
+                
+          
   
  
 </div>

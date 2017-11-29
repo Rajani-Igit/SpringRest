@@ -5,39 +5,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-            <div class="container" style=" position: absolute; top: 191px;left: 366px;">
+  <div class="container" style=" position: absolute; top: 191px;left: 366px;">
                 <form>
                     <div class="form-group">
                         <label for="usr">First name:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="fname">
+                        <input type="text"  placeholder="Enter First Name" class="form-control" style="width: 50%;" ng-model="fname">
                     </div>
                     <div class="form-group">
                         <label for="usr">Last Name:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="lname">
+                        <input type="text" placeholder="Enter Last Name" class="form-control" style="width: 50%;" ng-model="lname">
                     </div>
                     <div class="form-group">
                         <label for="usr">MobileNo:</label>
-                        <input type="text" class="form-control" style="width: 50%;" ng-model="mobile">
+                        <input type="text" placeholder="Enter Last Name" class="form-control" style="width: 50%;" ng-model="mobile">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Email:</label>
-                        <input type="text" style="width: 50%;" class="form-control" ng-model="email">
+                        <input type="text" placeholder="Enter Email" style="width: 50%;" class="form-control" ng-model="email">
                     </div>
                      <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" style="width: 50%;" class="form-control" ng-model="password">
+                        <input type="password" placeholder="Enter Pasword" style="width: 50%;" class="form-control" ng-model="password">
                     </div>
                      <div class="form-group">
                         <label for="pwd">Zip:</label>
-                        <input type="text" style="width: 50%;" class="form-control" ng-model="zip">
+                        <input type="text" placeholder="Enter Zipcode" style="width: 50%;" class="form-control" ng-model="zip">
                     </div>
                     
-                    <div ng-repeat="language in languages">
+                    <div ng-repeat="gender in genders">
 
                         <div>
                             <label>
-                                <input ng-model="$parent.selectedlang" value="{{language}}" name="languageradiobtn" type="radio"> <span> {{language}} </span>
+                                <input ng-model="$parent.selectedlang" value="{{gender}}" name="languageradiobtn" type="radio"> <span> {{gender}} </span>
 
                             </label>
                         </div>

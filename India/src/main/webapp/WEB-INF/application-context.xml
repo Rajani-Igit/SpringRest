@@ -15,4 +15,18 @@
 <bean id="npJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 <constructor-arg ref="dataSource"></constructor-arg>
 </bean>
+<bean id="mail" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+<property name="username" value="rajanikanta.pradhan5@gmail.com"/>
+<property name="password" value="Rajani@123"/>
+<property name="port" value="587"/>
+<property name="host" value="smtp.gmail.com"/>
+<property name="protocol" value="smtp"/>
+
+<property name="javaMailProperties">
+<props>
+        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.starttls.enable">true</prop>
+	</props>
+</property>
+</bean>
 </beans>
