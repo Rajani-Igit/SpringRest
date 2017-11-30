@@ -112,6 +112,7 @@ public class UserDao {
 			       endindex=pageNo*pageSize;
 			       
 			       while(rs.next()&& count<=endindex){
+			    	   if(startindex<=count){
 			    	   UserBo ubo=new UserBo();
 			   		ubo.setfName(rs.getString(1));
 			   		ubo.setlName(rs.getString(2));
@@ -122,9 +123,11 @@ public class UserDao {
 			   		ubo.setEmail(rs.getString(7));
 			   		ubo.setPassword(rs.getString(8));
 			   		userbolist.add(ubo);
-			    	   count=count+1;
 			       }
-				return userbolist;
+			    	   count=count+1;
+				}
+			       return userbolist;
+			        
 			}
 		});
      }

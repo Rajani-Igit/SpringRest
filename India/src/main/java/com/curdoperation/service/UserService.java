@@ -19,8 +19,6 @@ public class UserService {
 	MailSenderService service;
 	
 	public long AddNewUser(UserBo userbo){
-
-		
 		try{
 			return userdao.saveUser(userbo);
 			}
@@ -44,7 +42,12 @@ public class UserService {
 		}
 	}
 	public List<UserBo> displayAllUsers(int pageno, int pagesize){
-		return userdao.getusersbypagination(pageno,pagesize);
+		List<UserBo> userlist=userdao.getusersbypagination(pageno,pagesize);
+		if(userlist.size()>0){
+			return userlist;
+		}
+		else
+			throw new UserExceptions("This is the last page,No more Records are there");
 	}
 	public int removeUser(String emailid){
 		return userdao.deleteUserByMail(emailid);

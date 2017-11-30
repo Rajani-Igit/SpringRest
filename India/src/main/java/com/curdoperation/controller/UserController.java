@@ -62,7 +62,7 @@ public class UserController {
 
 	}
 
-	@RequestMapping("/getallusers")
+	@RequestMapping(value="/getallusers",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserBo>> getAllUsers(@RequestParam(value = "pageno") int pageNo,
 			@RequestParam(value = "pageSize") int pageSize) throws JsonProcessingException {
 		/*
@@ -70,8 +70,8 @@ public class UserController {
 		 * ObjectMapper(); String jsonInString =
 		 * mapper.writeValueAsString(userdao.getUsers());
 		 */
-		System.out.println(pageNo);
-		System.out.println(pageSize);
+		System.out.println("controller Page no"+pageNo);
+		System.out.println("controller Page Size"+pageSize);
 		return new ResponseEntity<List<UserBo>>(userService.displayAllUsers(pageNo, pageSize), HttpStatus.OK);
 	}
 

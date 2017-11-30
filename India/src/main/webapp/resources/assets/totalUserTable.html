@@ -9,6 +9,21 @@
                         <label for="usr">Search:</label>
                         <input type="text"  placeholder="Search User" class="form-control" style="width: 25%;" ng-model="attribute">
                     </div>
+                    <button class="btn btn-success" ng-click="fetchNextPage()" style="
+    position: absolute;
+    right: 137px;
+    top: 189px;
+">Next Page</button>
+ <button class="btn btn-success" ng-click="fetchPreviousPage()"  style="
+    position: absolute;
+    right: 237px;
+    top: 189px;
+">Previous Page</button>
+ <button class="btn btn-danger" ng-click="excelGenerationFunc()"  style="
+    position: absolute;
+    top: 189px;
+    right: 363px;
+">Download as Excel</button>
 <table  id="usertbl" class="table table-hover table-bordered" style="
  position: relative;
 ">
