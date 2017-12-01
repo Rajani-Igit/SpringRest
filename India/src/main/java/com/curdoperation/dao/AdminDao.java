@@ -26,7 +26,7 @@ import com.curdoperation.bo.UserBo;
  * 
  * */
 @Component
-public class UserDao {
+public class AdminDao {
    @Autowired
 	 private NamedParameterJdbcTemplate npJdbcTemplate;
 	 private final String SQL_INSERT_SAVEUSER="INSERT INTO USER_TBL(USER_FNAME, USER_LNAME, GENDER,STATE,ZIP, MOBILE, EMAIL, PASSWORD) VALUES(:fName,:lName,:gender,:state,:zip,:mobile,:email,:password)";

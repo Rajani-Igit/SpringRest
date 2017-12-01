@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.curdoperation.bo.UserBo;
-import com.curdoperation.dao.UserDao;
+import com.curdoperation.dao.AdminDao;
 import com.curdoperation.exceptions.UserExceptions;
 import com.curdoperation.util.MailSenderService;
 
 @Service
 public class UserService {
 	@Autowired
-	private UserDao userdao;
+	private AdminDao userdao;
 	@Autowired
 	MailSenderService service;
 	

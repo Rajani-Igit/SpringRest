@@ -599,6 +599,8 @@ app.directive("formDirective", function() {
 })
 
 
+
+
 app.directive("totalUserTable", function() {
 
     return {
@@ -610,3 +612,61 @@ app.directive("totalUserTable", function() {
         }
     }
 })
+
+
+app.directive('myDirective', function (httpPostFactory) {
+    return {
+        restrict: 'A',
+        scope: true,
+        link: function (scope, element, attr) {
+
+            element.bind('change', function () {
+            	console.log(element[0].files[0]);
+                var formData = new FormData();
+                formData.append('file', element[0].files[0]);
+                alert("Change");
+              
+                var file = element[0].files[0];
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                  console.log('RESULT', reader.result)
+                  $('#preview').attr('src',reader.result);
+                }
+                reader.readAsDataURL(file)
+                httpPostFactory('dummy.do', formData, function (callback) {
+                   // recieve image name to use in a ng-src 
+                    console.log(callback);
+                });
+                
+                
+            });
+
+        }
+    };
+});
+
+
+
+app.factory('httpPostFactory', function ($http) {
+    return function (file, data, callback) {
+    	alert("data");
+  
+    	$http.post(file, data, {
+            headers: {
+                'Content-Type': undefined
+            }
+        })
+            .then(function(success) {
+              
+                console.log(success);
+
+            }, function(error) {
+                alert("inside error");
+                console.log(error);
+              
+            });
+        
+    };
+});
+
+

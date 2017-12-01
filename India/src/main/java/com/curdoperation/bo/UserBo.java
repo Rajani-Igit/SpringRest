@@ -14,6 +14,7 @@ public class UserBo implements Serializable {
 	private String mobile;
 	private String email;
 	private String password;
+	
 	public String getfName() {
 		return fName;
 	}

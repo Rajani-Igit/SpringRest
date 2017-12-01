@@ -1,7 +1,14 @@
 package com.curdoperation.controller;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,18 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.curdoperation.bo.Success;
 import com.curdoperation.bo.UserBo;
-import com.curdoperation.dao.UserDao;
+import com.curdoperation.dao.AdminDao;
 import com.curdoperation.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Controller
-public class UserController {
+public class AdminController {
 
 	@Autowired
-	UserDao userdao;
+	AdminDao userdao;
 	@Autowired
 	private UserService userService;
 
@@ -111,10 +120,28 @@ public class UserController {
 	//Dummy Method for Testing purpose
 	@RequestMapping(value = "dummy", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@ResponseBody
-	public String dummyFunction(@RequestParam(value = "fname") String name) {
-		System.out.println(name);
-
-		return "hiii";
+	public String dummyFunction(HttpServletRequest request) {
+		System.out.println();
+		MultipartHttpServletRequest mRequest;
+		String filename = "upload.xlsx";
+		try {
+		   mRequest = (MultipartHttpServletRequest) request;
+		   mRequest.getParameterMap();
+		   Iterator itr = mRequest.getFileNames();
+		   while (itr.hasNext()) {
+		        MultipartFile mFile = mRequest.getFile((String) itr.next());
+		        String fileName = mFile.getOriginalFilename();
+		        /*System.out.println(fileName);
+		         * Files.deleteIfExists(path);*/
+		       // File f=new File("D:/Data/DemoUpload/");
+		        java.nio.file.Path path = Paths.get("D:/Data/DemoUpload/"+fileName);
+		        InputStream in = mFile.getInputStream();
+		        Files.copy(in, path);
+		 }
+		   } catch (Exception e) {
+		        e.printStackTrace();
+		   }
+		return null;
 	}
 
 }

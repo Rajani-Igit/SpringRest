@@ -25,9 +25,6 @@
     margin-left: 351px;">Welcome to Curd operation</h1>
     
   </div>
-  <input data-my-Directive type="file" name="file" accept="image/gif, image/jpeg, image/png">
-  <img id="preview" />
-  <div>hiii<div>
   <div style="
     margin-top: 54px;
     margin-left: 305px;">
